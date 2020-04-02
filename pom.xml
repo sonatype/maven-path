@@ -55,7 +55,7 @@
 
   <ciManagement>
     <system>jenkins</system>
-    <url>https://jenkins.zion.aws.s/job/goodies/job/maven-path</url>
+    <url>https://jenkins.ci.sonatype.dev/job/goodies/job/maven-path</url>
   </ciManagement>
 
   <distributionManagement>
@@ -73,12 +73,6 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.7.30</version>
-    </dependency>
-
     <dependency>
       <groupId>com.google.code.findbugs</groupId>
       <artifactId>jsr305</artifactId>
@@ -122,12 +116,6 @@
               <option>-Xdoclint:none</option>
             </additionalOptions>
           </configuration>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-invoker-plugin</artifactId>
-          <version>3.1.0</version>
         </plugin>
 
         <plugin>

@@ -17,9 +17,6 @@ import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -29,8 +26,6 @@ import static java.util.Objects.requireNonNull;
  */
 public class Maven1PathParser
 {
-  private static final Logger log = LoggerFactory.getLogger(Maven1PathParser.class);
-
   // SEE: https://github.com/apache/maven-indexer/blob/master/indexer-core/src/main/java/org/apache/maven/index/artifact/M1GavCalculator.java
   // SEE: https://cwiki.apache.org/confluence/display/MAVENOLD/Repository+Layout+-+Final
 
@@ -45,7 +40,6 @@ public class Maven1PathParser
   @Nullable
   public static MavenPath parse(final String path) {
     requireNonNull(path);
-    log.trace("Parse: {}", path);
 
     // skip invalid paths
     if (path.startsWith("/") || path.endsWith("/")) {

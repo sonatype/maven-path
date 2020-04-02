@@ -18,9 +18,6 @@ import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -30,8 +27,6 @@ import static java.util.Objects.requireNonNull;
  */
 public class Maven2PathParser
 {
-  private static final Logger log = LoggerFactory.getLogger(Maven2PathParser.class);
-
   /**
    * Matches {@literal maven-metadata.xml} and subordinates.
    */
@@ -61,7 +56,6 @@ public class Maven2PathParser
   @Nullable
   public static MavenPath parse(final String path) {
     requireNonNull(path);
-    log.trace("Parse: {}", path);
 
     // skip invalid paths
     if (path.startsWith("/") || path.endsWith("/")) {
