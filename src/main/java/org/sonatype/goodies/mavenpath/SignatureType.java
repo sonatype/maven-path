@@ -6,7 +6,7 @@ package org.sonatype.goodies.mavenpath;
 
 import javax.annotation.Nullable;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Supported signature types.
@@ -30,9 +30,9 @@ public enum SignatureType
   public final String contentType;
 
   SignatureType(final String suffix, final String algorithm, final String contentType) {
-    this.suffix = checkNotNull(suffix);
-    this.algorithm = checkNotNull(algorithm);
-    this.contentType = checkNotNull(contentType);
+    this.suffix = requireNonNull(suffix);
+    this.algorithm = requireNonNull(algorithm);
+    this.contentType = requireNonNull(contentType);
   }
 
   public boolean pathMatches(final String path) {

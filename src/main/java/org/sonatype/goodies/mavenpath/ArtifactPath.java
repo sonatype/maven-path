@@ -7,9 +7,7 @@ package org.sonatype.goodies.mavenpath;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 
-import com.google.common.base.MoreObjects;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Artifact and subordinate {@link MavenPath}.
@@ -42,11 +40,11 @@ public class ArtifactPath
                       final String type)
   {
     super(path, fileName);
-    this.groupId = checkNotNull(groupId);
-    this.artifactId = checkNotNull(artifactId);
-    this.version = checkNotNull(version);
+    this.groupId = requireNonNull(groupId);
+    this.artifactId = requireNonNull(artifactId);
+    this.version = requireNonNull(version);
     this.classifier = classifier;
-    this.type = checkNotNull(type);
+    this.type = requireNonNull(type);
   }
 
   public String getGroupId() {
@@ -86,13 +84,13 @@ public class ArtifactPath
 
   @Override
   public String toString() {
-    return MoreObjects.toStringHelper(this)
-        .add("groupId", groupId)
-        .add("artifactId", artifactId)
-        .add("version", version)
-        .add("classifier", classifier)
-        .add("type", type)
-        .toString();
+    return getClass().getSimpleName() + "{" +
+        "groupId='" + groupId + '\'' +
+        ", artifactId='" + artifactId + '\'' +
+        ", version='" + version + '\'' +
+        ", classifier='" + classifier + '\'' +
+        ", type='" + type + '\'' +
+        '}';
   }
 
   //

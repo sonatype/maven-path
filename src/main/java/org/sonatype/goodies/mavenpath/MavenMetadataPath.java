@@ -7,9 +7,7 @@ package org.sonatype.goodies.mavenpath;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 
-import com.google.common.base.MoreObjects;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * {@literal maven-metadata.xml} and subordinate {@link MavenPath}.
@@ -45,7 +43,7 @@ public class MavenMetadataPath
                            @Nullable final String subordinateType)
   {
     super(path, fileName);
-    this.prefix = checkNotNull(prefix);
+    this.prefix = requireNonNull(prefix);
     this.groupId = groupId;
     this.artifactId = artifactId;
     this.version = version;
@@ -86,12 +84,12 @@ public class MavenMetadataPath
 
   @Override
   public String toString() {
-    return MoreObjects.toStringHelper(this)
-        .add("prefix", prefix)
-        .add("groupId", groupId)
-        .add("artifactId", artifactId)
-        .add("version", version)
-        .add("subordinateType", subordinateType)
-        .toString();
+    return getClass().getSimpleName() + "{" +
+        "prefix='" + prefix + '\'' +
+        ", groupId='" + groupId + '\'' +
+        ", artifactId='" + artifactId + '\'' +
+        ", version='" + version + '\'' +
+        ", subordinateType='" + subordinateType + '\'' +
+        '}';
   }
 }

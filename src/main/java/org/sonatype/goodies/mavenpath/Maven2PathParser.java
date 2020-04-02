@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Maven-2 {@link MavenPath} parser.
@@ -52,7 +52,7 @@ public class Maven2PathParser
 
   @Nullable
   public static MavenPath parse(final String path) {
-    checkNotNull(path);
+    requireNonNull(path);
     log.trace("Parse: {}", path);
 
     // skip invalid paths

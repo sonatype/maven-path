@@ -6,7 +6,7 @@ package org.sonatype.goodies.mavenpath;
 
 import javax.annotation.Nullable;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Maven-2 {@link MavenPath} factory.
@@ -22,7 +22,7 @@ public class Maven2PathFactory
   }
 
   public static MavenMetadataPath createMavenMetadata(final String prefix, @Nullable final String subordinateType) {
-    checkNotNull(prefix);
+    requireNonNull(prefix);
 
     StringBuilder buff = new StringBuilder();
     buff.append(MAVEN_METADATA_FILENAME);
@@ -44,10 +44,10 @@ public class Maven2PathFactory
                                             @Nullable final String classifier,
                                             final String type)
   {
-    checkNotNull(groupId);
-    checkNotNull(artifactId);
-    checkNotNull(version);
-    checkNotNull(type);
+    requireNonNull(groupId);
+    requireNonNull(artifactId);
+    requireNonNull(version);
+    requireNonNull(type);
 
     StringBuilder buff = new StringBuilder();
     buff.append(artifactId);
@@ -75,13 +75,13 @@ public class Maven2PathFactory
                                                             @Nullable final String classifier,
                                                             final String type)
   {
-    checkNotNull(groupId);
-    checkNotNull(artifactId);
-    checkNotNull(baseVersion);
-    checkNotNull(version);
-    checkNotNull(timestamp);
-    checkNotNull(build);
-    checkNotNull(type);
+    requireNonNull(groupId);
+    requireNonNull(artifactId);
+    requireNonNull(baseVersion);
+    requireNonNull(version);
+    requireNonNull(timestamp);
+    requireNonNull(build);
+    requireNonNull(type);
 
     StringBuilder buff = new StringBuilder();
     buff.append(artifactId);
