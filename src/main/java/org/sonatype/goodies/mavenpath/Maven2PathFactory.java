@@ -7,6 +7,7 @@ package org.sonatype.goodies.mavenpath;
 import javax.annotation.Nullable;
 
 import static java.util.Objects.requireNonNull;
+import static org.sonatype.goodies.mavenpath.MavenMetadataPath.MAVEN_METADATA_FILENAME;
 
 /**
  * Maven-2 {@link MavenPath} factory.
@@ -15,8 +16,6 @@ import static java.util.Objects.requireNonNull;
  */
 public class Maven2PathFactory
 {
-  public static final String MAVEN_METADATA_FILENAME = "maven-metadata.xml";
-
   private Maven2PathFactory() {
     // empty
   }

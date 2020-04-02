@@ -18,6 +18,8 @@ import static java.util.Objects.requireNonNull;
 public class MavenMetadataPath
   extends MavenPath
 {
+  public static final String MAVEN_METADATA_FILENAME = "maven-metadata.xml";
+
   private static final long serialVersionUID = 1L;
 
   private final String prefix;

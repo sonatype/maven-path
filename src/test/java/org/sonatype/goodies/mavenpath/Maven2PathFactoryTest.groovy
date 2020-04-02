@@ -6,6 +6,8 @@ package org.sonatype.goodies.mavenpath
 
 import org.junit.Test
 
+import static org.sonatype.goodies.mavenpath.MavenMetadataPath.MAVEN_METADATA_FILENAME
+
 /**
  * {@link Maven2PathFactory} tests.
  */
@@ -16,8 +18,8 @@ class Maven2PathFactoryTest
     Maven2PathFactory.createMavenMetadata('foo/bar/baz', null).with {
       println it
       assert it instanceof MavenMetadataPath
-      assert it.path == "foo/bar/baz/${Maven2PathFactory.MAVEN_METADATA_FILENAME}"
-      assert it.fileName == Maven2PathFactory.MAVEN_METADATA_FILENAME
+      assert it.path == "foo/bar/baz/${MAVEN_METADATA_FILENAME}"
+      assert it.fileName == MAVEN_METADATA_FILENAME
       assert it.subordinateType == null
     }
   }
@@ -26,8 +28,8 @@ class Maven2PathFactoryTest
   void 'create maven-metadata subordinate'() {
     Maven2PathFactory.createMavenMetadata('foo/bar/baz', 'sha1').with {
       assert it instanceof MavenMetadataPath
-      assert it.path == "foo/bar/baz/${Maven2PathFactory.MAVEN_METADATA_FILENAME}.sha1"
-      assert it.fileName == "${Maven2PathFactory.MAVEN_METADATA_FILENAME}.sha1"
+      assert it.path == "foo/bar/baz/${MAVEN_METADATA_FILENAME}.sha1"
+      assert it.fileName == "${MAVEN_METADATA_FILENAME}.sha1"
       assert it.subordinateType == 'sha1'
     }
   }
