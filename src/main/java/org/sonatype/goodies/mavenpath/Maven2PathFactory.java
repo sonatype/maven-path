@@ -1,12 +1,21 @@
 /*
- * Copyright (c) 2019-present Sonatype, Inc. All rights reserved.
- * "Sonatype" is a trademark of Sonatype, Inc.
+ * Copyright (c) 2020-present Sonatype, Inc. All rights reserved.
+ *
+ * This program is licensed to you under the Apache License Version 2.0,
+ * and you may not use this file except in compliance with the Apache License Version 2.0.
+ * You may obtain a copy of the Apache License Version 2.0 at http://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the Apache License Version 2.0 is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
 package org.sonatype.goodies.mavenpath;
 
 import javax.annotation.Nullable;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
+import static org.sonatype.goodies.mavenpath.MavenMetadataPath.MAVEN_METADATA_FILENAME;
 
 /**
  * Maven-2 {@link MavenPath} factory.
@@ -15,14 +24,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class Maven2PathFactory
 {
-  public static final String MAVEN_METADATA_FILENAME = "maven-metadata.xml";
-
   private Maven2PathFactory() {
     // empty
   }
 
   public static MavenMetadataPath createMavenMetadata(final String prefix, @Nullable final String subordinateType) {
-    checkNotNull(prefix);
+    requireNonNull(prefix);
 
     StringBuilder buff = new StringBuilder();
     buff.append(MAVEN_METADATA_FILENAME);
@@ -44,10 +51,10 @@ public class Maven2PathFactory
                                             @Nullable final String classifier,
                                             final String type)
   {
-    checkNotNull(groupId);
-    checkNotNull(artifactId);
-    checkNotNull(version);
-    checkNotNull(type);
+    requireNonNull(groupId);
+    requireNonNull(artifactId);
+    requireNonNull(version);
+    requireNonNull(type);
 
     StringBuilder buff = new StringBuilder();
     buff.append(artifactId);
@@ -75,13 +82,13 @@ public class Maven2PathFactory
                                                             @Nullable final String classifier,
                                                             final String type)
   {
-    checkNotNull(groupId);
-    checkNotNull(artifactId);
-    checkNotNull(baseVersion);
-    checkNotNull(version);
-    checkNotNull(timestamp);
-    checkNotNull(build);
-    checkNotNull(type);
+    requireNonNull(groupId);
+    requireNonNull(artifactId);
+    requireNonNull(baseVersion);
+    requireNonNull(version);
+    requireNonNull(timestamp);
+    requireNonNull(build);
+    requireNonNull(type);
 
     StringBuilder buff = new StringBuilder();
     buff.append(artifactId);

@@ -1,6 +1,14 @@
 /*
- * Copyright (c) 2019-present Sonatype, Inc. All rights reserved.
- * "Sonatype" is a trademark of Sonatype, Inc.
+ * Copyright (c) 2020-present Sonatype, Inc. All rights reserved.
+ *
+ * This program is licensed to you under the Apache License Version 2.0,
+ * and you may not use this file except in compliance with the Apache License Version 2.0.
+ * You may obtain a copy of the Apache License Version 2.0 at http://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the Apache License Version 2.0 is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
 package org.sonatype.goodies.mavenpath;
 
@@ -9,10 +17,7 @@ import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Maven-1 {@link MavenPath} parser.
@@ -21,8 +26,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class Maven1PathParser
 {
-  private static final Logger log = LoggerFactory.getLogger(Maven1PathParser.class);
-
   // SEE: https://github.com/apache/maven-indexer/blob/master/indexer-core/src/main/java/org/apache/maven/index/artifact/M1GavCalculator.java
   // SEE: https://cwiki.apache.org/confluence/display/MAVENOLD/Repository+Layout+-+Final
 
@@ -36,8 +39,7 @@ public class Maven1PathParser
 
   @Nullable
   public static MavenPath parse(final String path) {
-    checkNotNull(path);
-    log.trace("Parse: {}", path);
+    requireNonNull(path);
 
     // skip invalid paths
     if (path.startsWith("/") || path.endsWith("/")) {

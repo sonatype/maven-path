@@ -1,13 +1,21 @@
 /*
- * Copyright (c) 2019-present Sonatype, Inc. All rights reserved.
- * "Sonatype" is a trademark of Sonatype, Inc.
+ * Copyright (c) 2020-present Sonatype, Inc. All rights reserved.
+ *
+ * This program is licensed to you under the Apache License Version 2.0,
+ * and you may not use this file except in compliance with the Apache License Version 2.0.
+ * You may obtain a copy of the Apache License Version 2.0 at http://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the Apache License Version 2.0 is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
 package org.sonatype.goodies.mavenpath;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Maven path.
@@ -27,8 +35,8 @@ public class MavenPath
   protected final String fileName;
 
   protected MavenPath(final String path, final String fileName) {
-    this.path = checkNotNull(path);
-    this.fileName = checkNotNull(fileName);
+    this.path = requireNonNull(path);
+    this.fileName = requireNonNull(fileName);
   }
 
   public String getPath() {
@@ -54,5 +62,13 @@ public class MavenPath
   @Override
   public int hashCode() {
     return Objects.hash(path);
+  }
+
+  @Override
+  public String toString() {
+    return getClass().getSimpleName() + "{" +
+        "path='" + path + '\'' +
+        ", fileName='" + fileName + '\'' +
+        '}';
   }
 }

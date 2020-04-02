@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018-present Sonatype, Inc. All rights reserved.
+    Copyright (c) 2020-present Sonatype, Inc. All rights reserved.
 
     This program is licensed to you under the Apache License Version 2.0,
     and you may not use this file except in compliance with the Apache License Version 2.0.
@@ -21,6 +21,7 @@
     <groupId>org.sonatype.buildsupport</groupId>
     <artifactId>public-parent</artifactId>
     <version>18</version>
+    <relativePath/>
   </parent>
 
   <groupId>org.sonatype.goodies</groupId>
@@ -54,7 +55,7 @@
 
   <ciManagement>
     <system>jenkins</system>
-    <url>https://jenkins.zion.aws.s/job/goodies/job/maven-path</url>
+    <url>https://jenkins.ci.sonatype.dev/job/goodies/job/maven-path</url>
   </ciManagement>
 
   <distributionManagement>
@@ -72,12 +73,6 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>28.2-jre</version>
-    </dependency>
-
     <dependency>
       <groupId>com.google.code.findbugs</groupId>
       <artifactId>jsr305</artifactId>
@@ -121,12 +116,6 @@
               <option>-Xdoclint:none</option>
             </additionalOptions>
           </configuration>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-invoker-plugin</artifactId>
-          <version>3.1.0</version>
         </plugin>
 
         <plugin>

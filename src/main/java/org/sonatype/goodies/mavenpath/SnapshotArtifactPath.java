@@ -1,15 +1,21 @@
 /*
- * Copyright (c) 2019-present Sonatype, Inc. All rights reserved.
- * "Sonatype" is a trademark of Sonatype, Inc.
+ * Copyright (c) 2020-present Sonatype, Inc. All rights reserved.
+ *
+ * This program is licensed to you under the Apache License Version 2.0,
+ * and you may not use this file except in compliance with the Apache License Version 2.0.
+ * You may obtain a copy of the Apache License Version 2.0 at http://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the Apache License Version 2.0 is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
  */
 package org.sonatype.goodies.mavenpath;
 
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 
-import com.google.common.base.MoreObjects;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * {@literal SNAPSHOT} and subordinate {@link ArtifactPath}.
@@ -47,9 +53,9 @@ public class SnapshotArtifactPath
                               final String type)
   {
     super(path, fileName, groupId, artifactId, version, classifier, type);
-    this.baseVersion = checkNotNull(baseVersion);
-    this.timestamp = checkNotNull(timestamp);
-    this.build = checkNotNull(build);
+    this.baseVersion = requireNonNull(baseVersion);
+    this.timestamp = requireNonNull(timestamp);
+    this.build = requireNonNull(build);
   }
 
   /**
@@ -85,15 +91,15 @@ public class SnapshotArtifactPath
 
   @Override
   public String toString() {
-    return MoreObjects.toStringHelper(this)
-        .add("groupId", groupId)
-        .add("artifactId", artifactId)
-        .add("baseVersion", baseVersion)
-        .add("version", version)
-        .add("timestamp", timestamp)
-        .add("build", build)
-        .add("classifier", classifier)
-        .add("type", type)
-        .toString();
+    return getClass().getSimpleName() + "{" +
+        "groupId='" + groupId + '\'' +
+        ", artifactId='" + artifactId + '\'' +
+        ", version='" + version + '\'' +
+        ", baseVersion='" + baseVersion + '\'' +
+        ", timestamp='" + timestamp + '\'' +
+        ", build='" + build + '\'' +
+        ", classifier='" + classifier + '\'' +
+        ", type='" + type + '\'' +
+        '}';
   }
 }
