@@ -1,0 +1,85 @@
+/*
+ * Copyright (c) 2019-present Sonatype, Inc. All rights reserved.
+ * "Sonatype" is a trademark of Sonatype, Inc.
+ */
+package org.sonatype.goodies.mavenpath;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.annotation.Nullable;
+
+import com.google.common.hash.HashCode;
+import com.google.common.hash.HashFunction;
+import com.google.common.hash.Hashing;
+import com.google.common.hash.HashingInputStream;
+import com.google.common.io.ByteStreams;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+// see: https://github.com/sonatype/nexus2-internal/blob/master/private/plugins/clm/nexus-staging-plugin/src/main/java/com/sonatype/nexus/staging/internal/rules/ChecksumStagingRuleEvaluator.java
+
+/**
+ * Supported checksum types.
+ *
+ * @since ???
+ */
+public enum ChecksumType
+{
+  SHA_1("sha1", "SHA-1", Hashing.sha1()),
+  SHA_256("sha256", "SHA-256", Hashing.sha256()),
+  SHA_512("sha512", "SHA-512", Hashing.sha512()),
+  MD5("md5", "MD5", Hashing.md5());
+
+  public static String CHECKSUM_CONTENT_TYPE = "text/plain";
+
+  /**
+   * File-extension suffix.
+   */
+  public final String suffix;
+
+  /**
+   * Hash algorithm name.
+   */
+  public final String algorithm;
+
+  /**
+   * Hash function.
+   */
+  public final HashFunction hashFunction;
+
+  ChecksumType(final String suffix, final String algorithm, final HashFunction hashFunction) {
+    this.suffix = checkNotNull(suffix);
+    this.algorithm = checkNotNull(algorithm);
+    this.hashFunction = checkNotNull(hashFunction);
+  }
+
+  public boolean pathMatches(final String path) {
+    return path.endsWith("." + suffix);
+  }
+
+  public String pathOf(final String path) {
+    return path + "." + suffix;
+  }
+
+  public HashCode hash(final InputStream content) throws IOException {
+    try (HashingInputStream hashing = new HashingInputStream(hashFunction, content)) {
+      ByteStreams.exhaust(hashing);
+      return hashing.hash();
+    }
+  }
+
+  //
+  // Helpers
+  //
+
+  @Nullable
+  public static ChecksumType ofPath(final String path) {
+    for (ChecksumType value : ChecksumType.values()) {
+      if (value.pathMatches(path)) {
+        return value;
+      }
+    }
+    return null;
+  }
+}
