@@ -37,6 +37,8 @@ public class ArtifactPath
   @Nullable
   protected final String classifier;
 
+  // FIXME: change to extension; here this is the proper term vs. type
+
   protected final String type;
 
   public ArtifactPath(final String path,
