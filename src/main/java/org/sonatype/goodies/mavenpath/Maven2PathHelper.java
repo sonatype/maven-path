@@ -14,6 +14,8 @@ package org.sonatype.goodies.mavenpath;
 
 import javax.annotation.Nullable;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Maven-2 path helpers.
  *
@@ -21,10 +23,47 @@ import javax.annotation.Nullable;
  */
 public class Maven2PathHelper
 {
-  public static final String TYPE_POM = "pom";
+  public static final String EXTENSION_POM = "pom";
 
   private Maven2PathHelper() {
     // empty
+  }
+
+  /**
+   * Generate Maven2 path from coordinates.
+   */
+  public static String path(final String groupId,
+                            final String artifactId,
+                            @Nullable final String classifier,
+                            final String extension,
+                            final String version)
+  {
+    requireNonNull(groupId);
+    requireNonNull(artifactId);
+    // classifier is nullable
+    requireNonNull(extension);
+    requireNonNull(version);
+
+    StringBuilder buff = new StringBuilder();
+    buff.append(groupId.replace('.', '/'))
+        .append('/')
+        .append(artifactId)
+        .append('/')
+        .append(version)
+        .append('/')
+        .append(artifactId)
+        .append('-')
+        .append(version);
+
+    if (classifier != null) {
+      buff.append('-')
+          .append(classifier);
+    }
+
+    buff.append('.')
+        .append(extension);
+
+    return buff.toString();
   }
 
   /**
@@ -50,7 +89,7 @@ public class Maven2PathHelper
         version,
         artifactId,
         version,
-        TYPE_POM
+        EXTENSION_POM
     );
   }
 

@@ -20,7 +20,20 @@ import org.junit.Test
 class Maven2PathHelperTest
 {
   @Test
-  void 'gav as path'() {
+  void 'gav path'() {
+    Maven2PathHelper.path('com.sonatype', 'foo', null, 'jar', '1.0').with {
+      println it
+      assert it == 'com/sonatype/foo/1.0/foo-1.0.jar'
+    }
+
+    Maven2PathHelper.path('com.sonatype', 'foo', 'bar', 'jar', '1.0').with {
+      println it
+      assert it == 'com/sonatype/foo/1.0/foo-1.0-bar.jar'
+    }
+  }
+
+  @Test
+  void 'gav path-prefix'() {
     Maven2PathHelper.pathPrefix('com.sonatype', 'foo', '1.0').with {
       println it
       assert it == 'com/sonatype/foo/1.0/foo-1.0'
@@ -28,7 +41,7 @@ class Maven2PathHelperTest
   }
 
   @Test
-  void 'gav as pom path'() {
+  void 'gav as pom-path'() {
     Maven2PathHelper.pomPath('com.sonatype', 'foo', '1.0').with {
       println it
       assert it == 'com/sonatype/foo/1.0/foo-1.0.pom'
