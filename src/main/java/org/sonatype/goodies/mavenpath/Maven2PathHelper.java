@@ -99,7 +99,7 @@ public class Maven2PathHelper
   public static String artifactFilename(final String artifactId,
                                         final String version,
                                         @Nullable final String classifier,
-                                        final String type)
+                                        final String extension)
   {
     StringBuilder buff = new StringBuilder();
     buff.append(artifactId).append('-').append(version);
@@ -108,7 +108,7 @@ public class Maven2PathHelper
       buff.append('-').append(classifier);
     }
 
-    buff.append('.').append(type);
+    buff.append('.').append(extension);
 
     return buff.toString();
   }
