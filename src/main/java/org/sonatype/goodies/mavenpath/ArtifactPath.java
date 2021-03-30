@@ -37,7 +37,7 @@ public class ArtifactPath
   @Nullable
   protected final String classifier;
 
-  protected final String type;
+  protected final String extension;
 
   public ArtifactPath(final String path,
                       final String fileName,
@@ -45,14 +45,14 @@ public class ArtifactPath
                       final String artifactId,
                       final String version,
                       @Nullable final String classifier,
-                      final String type)
+                      final String extension)
   {
     super(path, fileName);
     this.groupId = requireNonNull(groupId);
     this.artifactId = requireNonNull(artifactId);
     this.version = requireNonNull(version);
     this.classifier = classifier;
-    this.type = requireNonNull(type);
+    this.extension = requireNonNull(extension);
   }
 
   public String getGroupId() {
@@ -72,8 +72,8 @@ public class ArtifactPath
     return classifier;
   }
 
-  public String getType() {
-    return type;
+  public String getExtension() {
+    return extension;
   }
 
   public boolean isSubordinate() {
@@ -97,7 +97,7 @@ public class ArtifactPath
         ", artifactId='" + artifactId + '\'' +
         ", version='" + version + '\'' +
         ", classifier='" + classifier + '\'' +
-        ", type='" + type + '\'' +
+        ", extension='" + extension + '\'' +
         '}';
   }
 

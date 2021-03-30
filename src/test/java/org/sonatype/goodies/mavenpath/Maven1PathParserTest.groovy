@@ -27,7 +27,7 @@ class Maven1PathParserTest
                                   final String artifactId,
                                   final String version,
                                   final String classifier,
-                                  final String type,
+                                  final String extension,
                                   final boolean snapshot)
   {
     MavenPath parsed = Maven1PathParser.parse(path)
@@ -39,7 +39,7 @@ class Maven1PathParserTest
           parsed.artifactId == artifactId &&
           parsed.version == version &&
           parsed.classifier == classifier &&
-          parsed.type == type &&
+          parsed.extension == extension &&
           (parsed instanceof SnapshotArtifactPath) == snapshot
     }
     return false
@@ -48,10 +48,10 @@ class Maven1PathParserTest
   @Test
   void 'parse artifact'() {
     expect:
-      artifactMatches(path, fileName, groupId, artifactId, version, classifier, type, snapshot) == result
+      artifactMatches(path, fileName, groupId, artifactId, version, classifier, extension, snapshot) == result
     where:
       // @formatter:off
-      path                                                    | fileName                                    | groupId         | artifactId      | version           | classifier | type       | snapshot || result
+      path                                                    | fileName                                    | groupId         | artifactId      | version           | classifier | extension  | snapshot || result
       'activecluster/poms/activecluster-1.0-SNAPSHOT.pom'     | 'activecluster-1.0-SNAPSHOT.pom'            | 'activecluster' | 'activecluster' | '1.0-SNAPSHOT'    | null       | 'pom'      | true     || true
       // SEE: https://github.com/apache/maven-indexer/blob/master/indexer-core/src/test/java/org/apache/maven/index/artifact/M1GavCalculatorTest.java
       'org.jruby/javadocs/jruby-1.0RC1-SNAPSHOT-javadoc.jar'  | 'jruby-1.0RC1-SNAPSHOT-javadoc.jar'         | 'org.jruby'     | 'jruby'         | '1.0RC1-SNAPSHOT' | 'javadoc'  | 'jar'      | true     || true

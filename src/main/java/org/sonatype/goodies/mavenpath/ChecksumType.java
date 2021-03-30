@@ -12,9 +12,6 @@
  */
 package org.sonatype.goodies.mavenpath;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import javax.annotation.Nullable;
 
 //import com.google.common.hash.HashCode;

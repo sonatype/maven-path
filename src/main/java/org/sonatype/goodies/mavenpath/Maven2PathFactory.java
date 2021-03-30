@@ -49,12 +49,12 @@ public class Maven2PathFactory
                                             final String artifactId,
                                             final String version,
                                             @Nullable final String classifier,
-                                            final String type)
+                                            final String extension)
   {
     requireNonNull(groupId);
     requireNonNull(artifactId);
     requireNonNull(version);
-    requireNonNull(type);
+    requireNonNull(extension);
 
     StringBuilder buff = new StringBuilder();
     buff.append(artifactId);
@@ -62,7 +62,7 @@ public class Maven2PathFactory
     if (classifier != null) {
       buff.append('-').append(classifier);
     }
-    buff.append('.').append(type);
+    buff.append('.').append(extension);
     String fileName = buff.toString();
 
     buff.insert(0, '/').insert(0, version);
@@ -70,7 +70,7 @@ public class Maven2PathFactory
     buff.insert(0, '/').insert(0, groupId.replace('.', '/'));
     String path = buff.toString();
 
-    return new ArtifactPath(path, fileName, groupId, artifactId, version, classifier, type);
+    return new ArtifactPath(path, fileName, groupId, artifactId, version, classifier, extension);
   }
 
   public static SnapshotArtifactPath createSnapshotArtifact(final String groupId,
@@ -80,7 +80,7 @@ public class Maven2PathFactory
                                                             final String timestamp,
                                                             final String build,
                                                             @Nullable final String classifier,
-                                                            final String type)
+                                                            final String extension)
   {
     requireNonNull(groupId);
     requireNonNull(artifactId);
@@ -88,7 +88,7 @@ public class Maven2PathFactory
     requireNonNull(version);
     requireNonNull(timestamp);
     requireNonNull(build);
-    requireNonNull(type);
+    requireNonNull(extension);
 
     StringBuilder buff = new StringBuilder();
     buff.append(artifactId);
@@ -96,7 +96,7 @@ public class Maven2PathFactory
     if (classifier != null) {
       buff.append('-').append(classifier);
     }
-    buff.append('.').append(type);
+    buff.append('.').append(extension);
     String fileName = buff.toString();
 
     buff.insert(0, '/').insert(0, baseVersion);
@@ -104,6 +104,6 @@ public class Maven2PathFactory
     buff.insert(0, '/').insert(0, groupId.replace('.', '/'));
     String path = buff.toString();
 
-    return new SnapshotArtifactPath(path, fileName, groupId, artifactId, baseVersion, version, timestamp, build, classifier, type);
+    return new SnapshotArtifactPath(path, fileName, groupId, artifactId, baseVersion, version, timestamp, build, classifier, extension);
   }
 }

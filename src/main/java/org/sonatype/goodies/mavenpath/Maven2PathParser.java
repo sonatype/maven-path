@@ -38,14 +38,14 @@ public class Maven2PathParser
    * Matches artifact and subordinates.
    */
   private static final Pattern artifactPattern = Pattern.compile(
-      "^(?<group>.+)/(?<artifact>[^/]+)/(?<version>[^/]+)/(?<filename>\\k<artifact>-\\k<version>(-(?<classifier>[^.]+))?\\.(?<type>.+))$"
+      "^(?<group>.+)/(?<artifact>[^/]+)/(?<version>[^/]+)/(?<filename>\\k<artifact>-\\k<version>(-(?<classifier>[^.]+))?\\.(?<extension>.+))$"
   );
 
   /**
    * Matches SNAPSHOT artifact and subordinates.
    */
   private static final Pattern snapshotArtifactPattern = Pattern.compile(
-      "^(?<group>.+)/(?<artifact>[^/]+)/(?<bversion>(?<vprefix>[^/]+)-SNAPSHOT)/(?<filename>\\k<artifact>-(?<version>\\k<vprefix>-(?<vsuffix>(?<vtimestamp>\\d+\\.\\d+)-(?<vbuild>\\d+)))(-(?<classifier>[^.]+))?\\.(?<type>.+))$",
+      "^(?<group>.+)/(?<artifact>[^/]+)/(?<bversion>(?<vprefix>[^/]+)-SNAPSHOT)/(?<filename>\\k<artifact>-(?<version>\\k<vprefix>-(?<vsuffix>(?<vtimestamp>\\d+\\.\\d+)-(?<vbuild>\\d+)))(-(?<classifier>[^.]+))?\\.(?<extension>.+))$",
       Pattern.CASE_INSENSITIVE
   );
 
@@ -110,7 +110,7 @@ public class Maven2PathParser
           match.group("artifact"),
           match.group("version"),
           match.group("classifier"),
-          match.group("type")
+          match.group("extension")
       );
     }
 
@@ -126,7 +126,7 @@ public class Maven2PathParser
           match.group("vtimestamp"),
           match.group("vbuild"),
           match.group("classifier"),
-          match.group("type")
+          match.group("extension")
       );
     }
 
