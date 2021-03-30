@@ -50,9 +50,9 @@ public class SnapshotArtifactPath
                               final String timestamp,
                               final String build,
                               @Nullable final String classifier,
-                              final String type)
+                              final String extension)
   {
-    super(path, fileName, groupId, artifactId, version, classifier, type);
+    super(path, fileName, groupId, artifactId, version, classifier, extension);
     this.baseVersion = requireNonNull(baseVersion);
     this.timestamp = requireNonNull(timestamp);
     this.build = requireNonNull(build);
@@ -67,9 +67,9 @@ public class SnapshotArtifactPath
                               final String artifactId,
                               final String version,
                               @Nullable final String classifier,
-                              final String type)
+                              final String extension)
   {
-    super(path, fileName, groupId, artifactId, version, classifier, type);
+    super(path, fileName, groupId, artifactId, version, classifier, extension);
     this.baseVersion = version;
     this.timestamp = null;
     this.build = null;
@@ -99,7 +99,7 @@ public class SnapshotArtifactPath
         ", timestamp='" + timestamp + '\'' +
         ", build='" + build + '\'' +
         ", classifier='" + classifier + '\'' +
-        ", type='" + extension + '\'' +
+        ", extension='" + extension + '\'' +
         '}';
   }
 }

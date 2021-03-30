@@ -30,7 +30,7 @@ public class Maven1PathParser
   // SEE: https://cwiki.apache.org/confluence/display/MAVENOLD/Repository+Layout+-+Final
 
   private static final Pattern artifactPattern = Pattern.compile(
-      "^(?<group>[^/]+)/(?<types>[^/]+s)/(?<filename>(?<artifact>\\D+|[a-z0-9-_]+)-(?<version>\\d.+)\\.(?<type>\\D+(\\.md5|\\.sha1)?))$"
+      "^(?<group>[^/]+)/(?<types>[^/]+s)/(?<filename>(?<artifact>\\D+|[a-z0-9-_]+)-(?<version>\\d.+)\\.(?<extension>\\D+(\\.md5|\\.sha1)?))$"
   );
 
   private Maven1PathParser() {
@@ -53,7 +53,7 @@ public class Maven1PathParser
       String filename = match.group("filename");
       String artifact = match.group("artifact");
       String version = match.group("version");
-      String type = match.group("type");
+      String extension = match.group("extension");
 
       // special handling for a few types which have classifiers
       String classifier = null;
@@ -82,7 +82,7 @@ public class Maven1PathParser
             artifact,
             version,
             classifier,
-            type
+            extension
         );
       }
 
@@ -93,7 +93,7 @@ public class Maven1PathParser
           artifact,
           version,
           classifier,
-          type
+          extension
       );
     }
 

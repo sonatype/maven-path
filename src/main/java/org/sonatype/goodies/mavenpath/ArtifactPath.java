@@ -97,7 +97,7 @@ public class ArtifactPath
         ", artifactId='" + artifactId + '\'' +
         ", version='" + version + '\'' +
         ", classifier='" + classifier + '\'' +
-        ", type='" + extension + '\'' +
+        ", extension='" + extension + '\'' +
         '}';
   }
 
