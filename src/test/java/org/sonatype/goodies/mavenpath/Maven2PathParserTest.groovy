@@ -77,7 +77,7 @@ class Maven2PathParserTest
                                   final String artifactId,
                                   final String version,
                                   final String classifier,
-                                  final String type)
+                                  final String extension)
   {
     MavenPath parsed = Maven2PathParser.parse(path)
     if (parsed == null || parsed.path != path || parsed.fileName != fileName) {
@@ -88,7 +88,7 @@ class Maven2PathParserTest
           parsed.artifactId == artifactId &&
           parsed.version == version &&
           parsed.classifier == classifier &&
-          parsed.extension == type
+          parsed.extension == extension
     }
     return false
   }
@@ -96,10 +96,10 @@ class Maven2PathParserTest
   @Test
   void 'parse artifact'() {
     expect:
-      artifactMatches(path, fileName, groupId, artifactId, version, classifier, type) == result
+      artifactMatches(path, fileName, groupId, artifactId, version, classifier, extension) == result
     where:
       // @formatter:off
-      path                                   | fileName               | groupId   | artifactId | version | classifier | type          || result
+      path                                   | fileName               | groupId   | artifactId | version | classifier | extension     || result
       'foo/bar/baz/1.0/baz-1.0.jar'          | 'baz-1.0.jar'          | 'foo.bar' | 'baz'      | '1.0'   | null       | 'jar'         || true
       'foo/bar/baz/1.0/baz-1.0.jar.sha1'     | 'baz-1.0.jar.sha1'     | 'foo.bar' | 'baz'      | '1.0'   | null       | 'jar.sha1'    || true
       'foo/bar/baz/1.0/baz-1.0.jar.asc'      | 'baz-1.0.jar.asc'      | 'foo.bar' | 'baz'      | '1.0'   | null       | 'jar.asc'     || true
@@ -130,7 +130,7 @@ class Maven2PathParserTest
                                           final String timestamp,
                                           final String build,
                                           final String classifier,
-                                          final String type)
+                                          final String extension)
   {
     MavenPath parsed = Maven2PathParser.parse(path)
     if (parsed == null || parsed.path != path || parsed.fileName != fileName) {
@@ -144,7 +144,7 @@ class Maven2PathParserTest
           parsed.timestamp == timestamp &&
           parsed.build == build &&
           parsed.classifier == classifier &&
-          parsed.extension == type
+          parsed.extension == extension
     }
     return false
   }
@@ -153,10 +153,10 @@ class Maven2PathParserTest
   void 'parse SNAPSHOT artifact'() {
     expect:
       snapshotArtifactMatches(
-          path, fileName, groupId, artifactId, baseVersion, version, timestamp, build, classifier, type) == result
+          path, fileName, groupId, artifactId, baseVersion, version, timestamp, build, classifier, extension) == result
     where:
       // @formatter:off
-      path                                                              | fileName                                 | groupId   | artifactId | baseVersion    | version                 | timestamp         | build | classifier | type          || result
+      path                                                              | fileName                                 | groupId   | artifactId | baseVersion    | version                 | timestamp         | build | classifier | extension     || result
       'foo/bar/baz/1.0-SNAPSHOT/baz-1.0-20191029.053716-1.jar'          | 'baz-1.0-20191029.053716-1.jar'          | 'foo.bar' | 'baz'      | '1.0-SNAPSHOT' | '1.0-20191029.053716-1' | '20191029.053716' | '1'   | null       | 'jar'         || true
       'foo/bar/baz/1.0-SNAPSHOT/baz-1.0-20191029.053716-1.jar.sha1'     | 'baz-1.0-20191029.053716-1.jar.sha1'     | 'foo.bar' | 'baz'      | '1.0-SNAPSHOT' | '1.0-20191029.053716-1' | '20191029.053716' | '1'   | null       | 'jar.sha1'    || true
       'foo/bar/baz/1.0-SNAPSHOT/baz-1.0-20191029.053716-1.jar.asc'      | 'baz-1.0-20191029.053716-1.jar.asc'      | 'foo.bar' | 'baz'      | '1.0-SNAPSHOT' | '1.0-20191029.053716-1' | '20191029.053716' | '1'   | null       | 'jar.asc'     || true

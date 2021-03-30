@@ -29,22 +29,20 @@ public class Maven2PathHelper
     // empty
   }
 
-  // FIXME: adjust argument order; order here is a bit abnormal?
-
   /**
    * Generate Maven2 path from coordinates.
    */
   public static String path(final String groupId,
                             final String artifactId,
+                            final String version,
                             @Nullable final String classifier,
-                            final String extension,
-                            final String version)
+                            final String extension)
   {
     requireNonNull(groupId);
     requireNonNull(artifactId);
+    requireNonNull(version);
     // classifier is nullable
     requireNonNull(extension);
-    requireNonNull(version);
 
     StringBuilder buff = new StringBuilder();
     buff.append(groupId.replace('.', '/'))

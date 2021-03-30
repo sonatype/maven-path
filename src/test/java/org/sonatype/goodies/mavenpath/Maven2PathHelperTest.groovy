@@ -21,12 +21,12 @@ class Maven2PathHelperTest
 {
   @Test
   void 'gav path'() {
-    Maven2PathHelper.path('com.sonatype', 'foo', null, 'jar', '1.0').with {
+    Maven2PathHelper.path('com.sonatype', 'foo', '1.0', null, 'jar').with {
       println it
       assert it == 'com/sonatype/foo/1.0/foo-1.0.jar'
     }
 
-    Maven2PathHelper.path('com.sonatype', 'foo', 'bar', 'jar', '1.0').with {
+    Maven2PathHelper.path('com.sonatype', 'foo', '1.0', 'bar', 'jar').with {
       println it
       assert it == 'com/sonatype/foo/1.0/foo-1.0-bar.jar'
     }
