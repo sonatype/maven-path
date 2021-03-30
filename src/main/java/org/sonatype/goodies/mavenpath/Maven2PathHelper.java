@@ -66,6 +66,24 @@ public class Maven2PathHelper
     return buff.toString();
   }
 
+  public static String metadataPath(final String groupId, final String artifactId, @Nullable final String subordinateType) {
+    requireNonNull(groupId);
+    requireNonNull(artifactId);
+
+    StringBuilder buff = new StringBuilder();
+    buff.append(groupId.replace('.', '/'))
+        .append('/')
+        .append(artifactId)
+        .append('/')
+        .append("maven-metadata.xml");
+
+    if (subordinateType != null) {
+      buff.append('.').append(subordinateType);
+    }
+
+    return buff.toString();
+  }
+
   /**
    * Generate Maven2 path prefix from coordinates.
    */
