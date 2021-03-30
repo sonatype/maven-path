@@ -99,7 +99,7 @@ public class SnapshotArtifactPath
         ", timestamp='" + timestamp + '\'' +
         ", build='" + build + '\'' +
         ", classifier='" + classifier + '\'' +
-        ", type='" + type + '\'' +
+        ", type='" + extension + '\'' +
         '}';
   }
 }

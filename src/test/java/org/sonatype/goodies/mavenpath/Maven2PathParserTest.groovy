@@ -88,7 +88,7 @@ class Maven2PathParserTest
           parsed.artifactId == artifactId &&
           parsed.version == version &&
           parsed.classifier == classifier &&
-          parsed.type == type
+          parsed.extension == type
     }
     return false
   }
@@ -144,7 +144,7 @@ class Maven2PathParserTest
           parsed.timestamp == timestamp &&
           parsed.build == build &&
           parsed.classifier == classifier &&
-          parsed.type == type
+          parsed.extension == type
     }
     return false
   }

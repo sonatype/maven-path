@@ -14,8 +14,6 @@ package org.sonatype.goodies.mavenpath
 
 import org.junit.Test
 
-import static org.sonatype.goodies.mavenpath.MavenMetadataPath.MAVEN_METADATA_FILENAME
-
 /**
  * {@link Maven2PathFactory} tests.
  */
@@ -53,7 +51,7 @@ class Maven2PathFactoryTest
       assert it.artifactId == 'baz'
       assert it.version == '1.0'
       assert it.classifier == null
-      assert it.type == 'jar'
+      assert it.extension == 'jar'
     }
   }
 
@@ -68,7 +66,7 @@ class Maven2PathFactoryTest
       assert it.artifactId == 'baz'
       assert it.version == '1.0'
       assert it.classifier == 'qux'
-      assert it.type == 'jar'
+      assert it.extension == 'jar'
     }
   }
 
@@ -86,7 +84,7 @@ class Maven2PathFactoryTest
       assert it.timestamp == '20191029.053716'
       assert it.build == '1'
       assert it.classifier == null
-      assert it.type == 'jar'
+      assert it.extension == 'jar'
     }
   }
 
@@ -104,7 +102,7 @@ class Maven2PathFactoryTest
       assert it.timestamp == '20191029.053716'
       assert it.build == '1'
       assert it.classifier == 'qux'
-      assert it.type == 'jar'
+      assert it.extension == 'jar'
     }
   }
 }

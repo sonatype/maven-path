@@ -39,7 +39,7 @@ class Maven1PathParserTest
           parsed.artifactId == artifactId &&
           parsed.version == version &&
           parsed.classifier == classifier &&
-          parsed.type == type &&
+          parsed.extension == type &&
           (parsed instanceof SnapshotArtifactPath) == snapshot
     }
     return false

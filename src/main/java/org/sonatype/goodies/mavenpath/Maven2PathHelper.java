@@ -29,6 +29,8 @@ public class Maven2PathHelper
     // empty
   }
 
+  // FIXME: adjust argument order; order here is a bit abnormal?
+
   /**
    * Generate Maven2 path from coordinates.
    */
