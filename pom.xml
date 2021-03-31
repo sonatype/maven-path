@@ -72,6 +72,10 @@
     <dionysus.version>1.0.3</dionysus.version>
   </properties>
 
+  <!--
+  NOTE: Keep dependencies at a minimum.
+  -->
+
   <dependencies>
     <dependency>
       <groupId>com.google.code.findbugs</groupId>
