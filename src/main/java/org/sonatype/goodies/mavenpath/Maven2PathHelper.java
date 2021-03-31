@@ -30,7 +30,7 @@ public class Maven2PathHelper
   }
 
   /**
-   * Generate Maven2 path from coordinates.
+   * Generate Maven2 artifact path from coordinates.
    */
   public static String path(final String groupId,
                             final String artifactId,
@@ -66,16 +66,27 @@ public class Maven2PathHelper
     return buff.toString();
   }
 
-  public static String metadataPath(final String groupId, final String artifactId, @Nullable final String subordinateType) {
+  /**
+   * Generate Maven2 maven-metadata path from coordinates.
+   */
+  public static String metadataPath(final String groupId,
+                                    @Nullable final String artifactId,
+                                    @Nullable final String subordinateType)
+  {
     requireNonNull(groupId);
-    requireNonNull(artifactId);
+    // artifactId is nullable
+    // subordinateType is nullable
 
     StringBuilder buff = new StringBuilder();
     buff.append(groupId.replace('.', '/'))
-        .append('/')
-        .append(artifactId)
-        .append('/')
-        .append("maven-metadata.xml");
+        .append('/');
+
+    if (artifactId != null) {
+        buff.append(artifactId)
+          .append('/');
+    }
+
+    buff.append(MavenMetadataPath.MAVEN_METADATA_FILENAME);
 
     if (subordinateType != null) {
       buff.append('.').append(subordinateType);
