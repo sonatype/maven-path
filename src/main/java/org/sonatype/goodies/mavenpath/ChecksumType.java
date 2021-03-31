@@ -41,26 +41,26 @@ public enum ChecksumType
   /**
    * File-extension suffix.
    */
-  public final String suffix;
+  public final String extension;
 
   /**
    * Hash algorithm name.
    */
   public final String algorithm;
 
-  ChecksumType(final String suffix, final String algorithm) {
-    this.suffix = requireNonNull(suffix);
+  ChecksumType(final String extension, final String algorithm) {
+    this.extension = requireNonNull(extension);
     this.algorithm = requireNonNull(algorithm);
   }
 
   public boolean pathMatches(final String path) {
     requireNonNull(path);
-    return path.endsWith("." + suffix);
+    return path.endsWith("." + extension);
   }
 
   public String pathOf(final String path) {
     requireNonNull(path);
-    return path + "." + suffix;
+    return path + "." + extension;
   }
 
   //
@@ -68,8 +68,18 @@ public enum ChecksumType
   //
 
   @Nullable
+  public static ChecksumType forAlgorithm(final String algorithm) {
+    for (ChecksumType type : values()) {
+      if (type.algorithm.equals(algorithm)) {
+        return type;
+      }
+    }
+    return null;
+  }
+
+  @Nullable
   public static ChecksumType ofPath(final String path) {
-    for (ChecksumType value : ChecksumType.values()) {
+    for (ChecksumType value : values()) {
       if (value.pathMatches(path)) {
         return value;
       }

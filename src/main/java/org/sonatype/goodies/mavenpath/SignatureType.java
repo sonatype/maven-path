@@ -28,7 +28,7 @@ public enum SignatureType
   /**
    * File-extension suffix.
    */
-  public final String suffix;
+  public final String extension;
 
   /**
    * Signature algorithm name.
@@ -37,20 +37,20 @@ public enum SignatureType
 
   public final String contentType;
 
-  SignatureType(final String suffix, final String algorithm, final String contentType) {
-    this.suffix = requireNonNull(suffix);
+  SignatureType(final String extension, final String algorithm, final String contentType) {
+    this.extension = requireNonNull(extension);
     this.algorithm = requireNonNull(algorithm);
     this.contentType = requireNonNull(contentType);
   }
 
   public boolean pathMatches(final String path) {
     requireNonNull(path);
-    return path.endsWith("." + suffix);
+    return path.endsWith("." + extension);
   }
 
   public String pathOf(final String path) {
     requireNonNull(path);
-    return path + "." + suffix;
+    return path + "." + extension;
   }
 
   //
@@ -58,8 +58,18 @@ public enum SignatureType
   //
 
   @Nullable
+  public static SignatureType forAlgorithm(final String algorithm) {
+    for (SignatureType type : values()) {
+      if (type.algorithm.equals(algorithm)) {
+        return type;
+      }
+    }
+    return null;
+  }
+
+  @Nullable
   public static SignatureType ofPath(final String path) {
-    for (SignatureType value : SignatureType.values()) {
+    for (SignatureType value : values()) {
       if (value.pathMatches(path)) {
         return value;
       }
