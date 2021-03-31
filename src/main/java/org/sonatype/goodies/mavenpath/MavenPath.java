@@ -15,6 +15,8 @@ package org.sonatype.goodies.mavenpath;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.annotation.concurrent.Immutable;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -25,6 +27,7 @@ import static java.util.Objects.requireNonNull;
  * @see ArtifactPath
  * @see SnapshotArtifactPath
  */
+@Immutable
 public class MavenPath
     implements Serializable
 {
