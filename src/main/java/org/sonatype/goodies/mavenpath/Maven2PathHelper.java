@@ -71,20 +71,40 @@ public class Maven2PathHelper
    * Generate Maven2 artifact path prefix from coordinates.
    */
   public static String artifactPathPrefix(final String groupId, final String artifactId, final String version) {
-    return String.format("%s/%s/%s/%s-%s",
-        groupId.replace('.', '/'),
-        artifactId,
-        version,
-        artifactId,
-        version
-    );
+    requireNonNull(groupId);
+    requireNonNull(artifactId);
+    requireNonNull(version);
+
+    StringBuilder buff = new StringBuilder();
+    buff.append(groupId.replace('.', '/'))
+        .append('/')
+        .append(artifactId)
+        .append('/')
+        .append(version)
+        .append('/')
+        .append(artifactId)
+        .append('-')
+        .append(version);
+
+    return buff.toString();
   }
 
   /**
-   * Generate Maven2 POM path from coordinates.
+   * Generate Maven2 artifact base-path from coordinates.
    */
-  public static String pomPath(final String groupId, final String artifactId, final String version) {
-    return artifactPath(groupId, artifactId, version, null, EXTENSION_POM);
+  public static String artifactBasePath(final String groupId, final String artifactId, final String version) {
+    requireNonNull(groupId);
+    requireNonNull(artifactId);
+    requireNonNull(version);
+
+    StringBuilder buff = new StringBuilder();
+    buff.append(groupId.replace('.', '/'))
+        .append('/')
+        .append(artifactId)
+        .append('/')
+        .append(version);
+
+    return buff.toString();
   }
 
   /**
@@ -95,27 +115,32 @@ public class Maven2PathHelper
                                         @Nullable final String classifier,
                                         final String extension)
   {
+    requireNonNull(artifactId);
+    requireNonNull(version);
+    // classifier is nullable
+    requireNonNull(extension);
+
     StringBuilder buff = new StringBuilder();
-    buff.append(artifactId).append('-').append(version);
+    buff.append(artifactId)
+        .append('-')
+        .append(version);
 
     if (classifier != null) {
-      buff.append('-').append(classifier);
+      buff.append('-')
+          .append(classifier);
     }
 
-    buff.append('.').append(extension);
+    buff.append('.')
+        .append(extension);
 
     return buff.toString();
   }
 
   /**
-   * Generate Maven2 artifact base-path from coordinates.
+   * Generate Maven2 POM path from coordinates.
    */
-  public static String artifactBasePath(final String groupId, final String artifactId, final String version) {
-    return String.format("%s/%s/%s",
-        groupId.replace('.', '/'),
-        artifactId,
-        version
-    );
+  public static String pomPath(final String groupId, final String artifactId, final String version) {
+    return artifactPath(groupId, artifactId, version, null, EXTENSION_POM);
   }
 
   /**
