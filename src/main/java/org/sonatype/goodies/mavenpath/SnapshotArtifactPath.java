@@ -28,6 +28,10 @@ public class SnapshotArtifactPath
 {
   private static final long serialVersionUID = 1L;
 
+  public static final String SNAPSHOT_SUFFIX = "SNAPSHOT";
+
+  public static final String DASH_SNAPSHOT_SUFFIX = "-SNAPSHOT";
+
   private final String baseVersion;
 
   // TODO: Consider supporting parsing out timestamp?

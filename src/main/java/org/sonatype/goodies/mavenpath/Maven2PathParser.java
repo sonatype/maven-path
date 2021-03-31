@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 
 import static java.util.Objects.requireNonNull;
+import static org.sonatype.goodies.mavenpath.SnapshotArtifactPath.SNAPSHOT_SUFFIX;
 
 /**
  * Maven-2 {@link MavenPath} parser.
@@ -27,8 +28,6 @@ import static java.util.Objects.requireNonNull;
  */
 public class Maven2PathParser
 {
-  public static final String SNAPSHOT_SUFFIX = "SNAPSHOT";
-
   /**
    * Matches {@literal maven-metadata.xml} and subordinates.
    */

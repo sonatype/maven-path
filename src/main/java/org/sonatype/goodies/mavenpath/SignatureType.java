@@ -35,6 +35,9 @@ public enum SignatureType
    */
   public final String algorithm;
 
+  /**
+   * Content type.
+   */
   public final String contentType;
 
   SignatureType(final String extension, final String algorithm, final String contentType) {

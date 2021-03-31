@@ -31,12 +31,10 @@ import static java.util.Objects.requireNonNull;
  */
 public enum ChecksumType
 {
-  SHA_1("sha1", "SHA-1"),
-  SHA_256("sha256", "SHA-256"),
-  SHA_512("sha512", "SHA-512"),
-  MD5("md5", "MD5");
-
-  public static final String CHECKSUM_CONTENT_TYPE = "text/plain";
+  SHA_1("sha1", "SHA-1", "text/plain"),
+  SHA_256("sha256", "SHA-256", "text/plain"),
+  SHA_512("sha512", "SHA-512", "text/plain"),
+  MD5("md5", "MD5", "text/plain");
 
   /**
    * File-extension suffix.
@@ -48,9 +46,15 @@ public enum ChecksumType
    */
   public final String algorithm;
 
-  ChecksumType(final String extension, final String algorithm) {
+  /**
+   * Content type.
+   */
+  public final String contentType;
+
+  ChecksumType(final String extension, final String algorithm, final String contentType) {
     this.extension = requireNonNull(extension);
     this.algorithm = requireNonNull(algorithm);
+    this.contentType = requireNonNull(contentType);
   }
 
   public boolean pathMatches(final String path) {
