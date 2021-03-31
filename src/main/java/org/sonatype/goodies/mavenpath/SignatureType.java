@@ -44,10 +44,12 @@ public enum SignatureType
   }
 
   public boolean pathMatches(final String path) {
+    requireNonNull(path);
     return path.endsWith("." + suffix);
   }
 
   public String pathOf(final String path) {
+    requireNonNull(path);
     return path + "." + suffix;
   }
 

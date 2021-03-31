@@ -31,12 +31,12 @@ import static java.util.Objects.requireNonNull;
  */
 public enum ChecksumType
 {
-  SHA_1("sha1", "SHA-1"/*, Hashing.sha1()*/),
-  SHA_256("sha256", "SHA-256"/*, Hashing.sha256()*/),
-  SHA_512("sha512", "SHA-512"/*, Hashing.sha512()*/),
-  MD5("md5", "MD5"/*, Hashing.md5()*/);
+  SHA_1("sha1", "SHA-1"),
+  SHA_256("sha256", "SHA-256"),
+  SHA_512("sha512", "SHA-512"),
+  MD5("md5", "MD5");
 
-  public static String CHECKSUM_CONTENT_TYPE = "text/plain";
+  public static final String CHECKSUM_CONTENT_TYPE = "text/plain";
 
   /**
    * File-extension suffix.
@@ -48,31 +48,20 @@ public enum ChecksumType
    */
   public final String algorithm;
 
-  ///**
-  // * Hash function.
-  // */
-  //public final HashFunction hashFunction;
-
-  ChecksumType(final String suffix, final String algorithm/*, final HashFunction hashFunction*/) {
+  ChecksumType(final String suffix, final String algorithm) {
     this.suffix = requireNonNull(suffix);
     this.algorithm = requireNonNull(algorithm);
-    //this.hashFunction = requireNonNull(hashFunction);
   }
 
   public boolean pathMatches(final String path) {
+    requireNonNull(path);
     return path.endsWith("." + suffix);
   }
 
   public String pathOf(final String path) {
+    requireNonNull(path);
     return path + "." + suffix;
   }
-
-  //public HashCode hash(final InputStream content) throws IOException {
-  //  try (HashingInputStream hashing = new HashingInputStream(hashFunction, content)) {
-  //    ByteStreams.exhaust(hashing);
-  //    return hashing.hash();
-  //  }
-  //}
 
   //
   // Helpers
