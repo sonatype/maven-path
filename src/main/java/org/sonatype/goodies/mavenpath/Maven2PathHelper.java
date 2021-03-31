@@ -26,6 +26,8 @@ public class Maven2PathHelper
 {
   public static final String EXTENSION_POM = "pom";
 
+  public static final String EXTENSION_JAR = "jar";
+
   private Maven2PathHelper() {
     // empty
   }
