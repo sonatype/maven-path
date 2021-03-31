@@ -30,7 +30,7 @@ public class SnapshotArtifactPath
 
   public static final String SNAPSHOT_SUFFIX = "SNAPSHOT";
 
-  public static final String DASH_SNAPSHOT_SUFFIX = "-SNAPSHOT";
+  public static final String DASH_SNAPSHOT_SUFFIX = "-" + SNAPSHOT_SUFFIX;
 
   private final String baseVersion;
 
