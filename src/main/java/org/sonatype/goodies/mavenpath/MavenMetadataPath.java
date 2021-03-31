@@ -28,6 +28,8 @@ public class MavenMetadataPath
 {
   public static final String MAVEN_METADATA_FILENAME = "maven-metadata.xml";
 
+  public static final String MAVEN_METADATA_EXTENSION = "xml";
+
   private static final long serialVersionUID = 1L;
 
   private final String prefix;
