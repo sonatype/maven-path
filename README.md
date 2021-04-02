@@ -24,13 +24,3 @@
 ### Build
 
     ./build rebuild
-
-## Site 
-
-### Building
-
-    ./build site_build
-    
-### Publishing
-
-    ./build site_deploy
