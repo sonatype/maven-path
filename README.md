@@ -18,8 +18,9 @@
 
 ### Requirements
 
-* Apache Maven 3.3+
+* [Apache Maven](https://maven.apache.org/) 3.6+ (prefer to use included `mvnw`)
 * JDK 8+
+* BaSH (for `build` script)
 
 ### Build
 
