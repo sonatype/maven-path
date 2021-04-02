@@ -74,7 +74,7 @@ public class Maven1PathParser
         version = version.substring(0, version.length() - (classifier.length() + 1));
       }
 
-      if (version.endsWith("SNAPSHOT")) {
+      if (version.endsWith(SnapshotArtifactPath.SNAPSHOT_SUFFIX)) {
         return new SnapshotArtifactPath(
             path,
             filename,

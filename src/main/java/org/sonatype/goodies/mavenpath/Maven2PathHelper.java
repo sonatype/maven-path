@@ -15,6 +15,7 @@ package org.sonatype.goodies.mavenpath;
 import javax.annotation.Nullable;
 
 import static java.util.Objects.requireNonNull;
+import static org.sonatype.goodies.mavenpath.MavenMetadataPath.MAVEN_METADATA_FILENAME;
 
 /**
  * Maven-2 path helpers.
@@ -25,18 +26,20 @@ public class Maven2PathHelper
 {
   public static final String EXTENSION_POM = "pom";
 
+  public static final String EXTENSION_JAR = "jar";
+
   private Maven2PathHelper() {
     // empty
   }
 
   /**
-   * Generate Maven2 path from coordinates.
+   * Generate Maven2 artifact path from coordinates.
    */
-  public static String path(final String groupId,
-                            final String artifactId,
-                            final String version,
-                            @Nullable final String classifier,
-                            final String extension)
+  public static String artifactPath(final String groupId,
+                                    final String artifactId,
+                                    final String version,
+                                    @Nullable final String classifier,
+                                    final String extension)
   {
     requireNonNull(groupId);
     requireNonNull(artifactId);
@@ -67,30 +70,43 @@ public class Maven2PathHelper
   }
 
   /**
-   * Generate Maven2 path prefix from coordinates.
+   * Generate Maven2 artifact path prefix from coordinates.
    */
-  public static String pathPrefix(final String groupId, final String artifactId, final String version) {
-    return String.format("%s/%s/%s/%s-%s",
-        groupId.replace('.', '/'),
-        artifactId,
-        version,
-        artifactId,
-        version
-    );
+  public static String artifactPathPrefix(final String groupId, final String artifactId, final String version) {
+    requireNonNull(groupId);
+    requireNonNull(artifactId);
+    requireNonNull(version);
+
+    StringBuilder buff = new StringBuilder();
+    buff.append(groupId.replace('.', '/'))
+        .append('/')
+        .append(artifactId)
+        .append('/')
+        .append(version)
+        .append('/')
+        .append(artifactId)
+        .append('-')
+        .append(version);
+
+    return buff.toString();
   }
 
   /**
-   * Generate Maven2 POM path from coordinates.
+   * Generate Maven2 artifact base-path from coordinates.
    */
-  public static String pomPath(final String groupId, final String artifactId, final String version) {
-    return String.format("%s/%s/%s/%s-%s.%s",
-        groupId.replace('.', '/'),
-        artifactId,
-        version,
-        artifactId,
-        version,
-        EXTENSION_POM
-    );
+  public static String artifactBasePath(final String groupId, final String artifactId, final String version) {
+    requireNonNull(groupId);
+    requireNonNull(artifactId);
+    requireNonNull(version);
+
+    StringBuilder buff = new StringBuilder();
+    buff.append(groupId.replace('.', '/'))
+        .append('/')
+        .append(artifactId)
+        .append('/')
+        .append(version);
+
+    return buff.toString();
   }
 
   /**
@@ -101,26 +117,60 @@ public class Maven2PathHelper
                                         @Nullable final String classifier,
                                         final String extension)
   {
+    requireNonNull(artifactId);
+    requireNonNull(version);
+    // classifier is nullable
+    requireNonNull(extension);
+
     StringBuilder buff = new StringBuilder();
-    buff.append(artifactId).append('-').append(version);
+    buff.append(artifactId)
+        .append('-')
+        .append(version);
 
     if (classifier != null) {
-      buff.append('-').append(classifier);
+      buff.append('-')
+          .append(classifier);
     }
 
-    buff.append('.').append(extension);
+    buff.append('.')
+        .append(extension);
 
     return buff.toString();
   }
 
   /**
-   * Generate Maven2 artifact base-path from coordinates.
+   * Generate Maven2 POM path from coordinates.
    */
-  public static String artifactBasePath(final String groupId, final String artifactId, final String version) {
-    return String.format("%s/%s/%s",
-        groupId.replace('.', '/'),
-        artifactId,
-        version
-    );
+  public static String pomPath(final String groupId, final String artifactId, final String version) {
+    return artifactPath(groupId, artifactId, version, null, EXTENSION_POM);
+  }
+
+  /**
+   * Generate Maven2 maven-metadata path from coordinates.
+   */
+  public static String metadataPath(final String groupId,
+                                    @Nullable final String artifactId,
+                                    @Nullable final String subordinateType)
+  {
+    requireNonNull(groupId);
+    // artifactId is nullable
+    // subordinateType is nullable
+
+    StringBuilder buff = new StringBuilder();
+    buff.append(groupId.replace('.', '/'))
+        .append('/');
+
+    if (artifactId != null) {
+      buff.append(artifactId)
+          .append('/');
+    }
+
+    buff.append(MAVEN_METADATA_FILENAME);
+
+    if (subordinateType != null) {
+      buff.append('.').append(subordinateType);
+    }
+
+    return buff.toString();
   }
 }

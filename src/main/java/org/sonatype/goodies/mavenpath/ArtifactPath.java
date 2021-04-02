@@ -110,6 +110,6 @@ public class ArtifactPath
       return true;
     }
     String version = path.getVersion();
-    return version != null && version.endsWith("-SNAPSHOT");
+    return version != null && version.endsWith(SnapshotArtifactPath.DASH_SNAPSHOT_SUFFIX);
   }
 }

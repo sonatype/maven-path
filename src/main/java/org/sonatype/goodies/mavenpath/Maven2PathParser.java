@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 
 import static java.util.Objects.requireNonNull;
+import static org.sonatype.goodies.mavenpath.SnapshotArtifactPath.SNAPSHOT_SUFFIX;
 
 /**
  * Maven-2 {@link MavenPath} parser.
@@ -74,7 +75,7 @@ public class Maven2PathParser
       // use the last segment to _guess_ G/GA/GAV variants
       String[] segments = prefix.split("/");
       String lastSegment = segments[segments.length - 1];
-      if (segments.length > 2 && lastSegment.endsWith("SNAPSHOT")) {
+      if (segments.length > 2 && lastSegment.endsWith(SNAPSHOT_SUFFIX)) {
         // if last segment contains SNAPSHOT; most likely a <group>/<artifact>/<version>/maven-metadata.xml path
         version = lastSegment;
         artifactId = segments[segments.length - 2];

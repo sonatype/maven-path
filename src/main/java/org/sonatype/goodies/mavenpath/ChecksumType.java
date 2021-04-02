@@ -31,56 +31,59 @@ import static java.util.Objects.requireNonNull;
  */
 public enum ChecksumType
 {
-  SHA_1("sha1", "SHA-1"/*, Hashing.sha1()*/),
-  SHA_256("sha256", "SHA-256"/*, Hashing.sha256()*/),
-  SHA_512("sha512", "SHA-512"/*, Hashing.sha512()*/),
-  MD5("md5", "MD5"/*, Hashing.md5()*/);
-
-  public static String CHECKSUM_CONTENT_TYPE = "text/plain";
+  SHA_1("sha1", "SHA-1", "text/plain"),
+  SHA_256("sha256", "SHA-256", "text/plain"),
+  SHA_512("sha512", "SHA-512", "text/plain"),
+  MD5("md5", "MD5", "text/plain");
 
   /**
    * File-extension suffix.
    */
-  public final String suffix;
+  public final String extension;
 
   /**
    * Hash algorithm name.
    */
   public final String algorithm;
 
-  ///**
-  // * Hash function.
-  // */
-  //public final HashFunction hashFunction;
+  /**
+   * Content type.
+   */
+  public final String contentType;
 
-  ChecksumType(final String suffix, final String algorithm/*, final HashFunction hashFunction*/) {
-    this.suffix = requireNonNull(suffix);
+  ChecksumType(final String extension, final String algorithm, final String contentType) {
+    this.extension = requireNonNull(extension);
     this.algorithm = requireNonNull(algorithm);
-    //this.hashFunction = requireNonNull(hashFunction);
+    this.contentType = requireNonNull(contentType);
   }
 
   public boolean pathMatches(final String path) {
-    return path.endsWith("." + suffix);
+    requireNonNull(path);
+    return path.endsWith("." + extension);
   }
 
   public String pathOf(final String path) {
-    return path + "." + suffix;
+    requireNonNull(path);
+    return path + "." + extension;
   }
-
-  //public HashCode hash(final InputStream content) throws IOException {
-  //  try (HashingInputStream hashing = new HashingInputStream(hashFunction, content)) {
-  //    ByteStreams.exhaust(hashing);
-  //    return hashing.hash();
-  //  }
-  //}
 
   //
   // Helpers
   //
 
   @Nullable
+  public static ChecksumType forAlgorithm(final String algorithm) {
+    for (ChecksumType type : values()) {
+      if (type.algorithm.equals(algorithm)) {
+        return type;
+      }
+    }
+    return null;
+  }
+
+  @Nullable
   public static ChecksumType ofPath(final String path) {
-    for (ChecksumType value : ChecksumType.values()) {
+    for (ChecksumType value : values()) {
       if (value.pathMatches(path)) {
         return value;
       }

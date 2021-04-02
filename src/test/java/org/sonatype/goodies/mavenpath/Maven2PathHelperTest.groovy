@@ -21,12 +21,12 @@ class Maven2PathHelperTest
 {
   @Test
   void 'gav path'() {
-    Maven2PathHelper.path('com.sonatype', 'foo', '1.0', null, 'jar').with {
+    Maven2PathHelper.artifactPath('com.sonatype', 'foo', '1.0', null, 'jar').with {
       println it
       assert it == 'com/sonatype/foo/1.0/foo-1.0.jar'
     }
 
-    Maven2PathHelper.path('com.sonatype', 'foo', '1.0', 'bar', 'jar').with {
+    Maven2PathHelper.artifactPath('com.sonatype', 'foo', '1.0', 'bar', 'jar').with {
       println it
       assert it == 'com/sonatype/foo/1.0/foo-1.0-bar.jar'
     }
@@ -34,7 +34,7 @@ class Maven2PathHelperTest
 
   @Test
   void 'gav path-prefix'() {
-    Maven2PathHelper.pathPrefix('com.sonatype', 'foo', '1.0').with {
+    Maven2PathHelper.artifactPathPrefix('com.sonatype', 'foo', '1.0').with {
       println it
       assert it == 'com/sonatype/foo/1.0/foo-1.0'
     }
