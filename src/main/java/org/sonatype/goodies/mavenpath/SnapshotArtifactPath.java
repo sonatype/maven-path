@@ -35,6 +35,7 @@ public class SnapshotArtifactPath
   private final String baseVersion;
 
   // TODO: Consider supporting parsing out timestamp?
+  // see: https://github.com/apache/maven-resolver/blob/master/maven-resolver-api/src/main/java/org/eclipse/aether/artifact/AbstractArtifact.java#L39
 
   @Nullable
   private final String timestamp;
