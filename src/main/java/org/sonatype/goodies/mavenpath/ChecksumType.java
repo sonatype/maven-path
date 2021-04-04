@@ -14,13 +14,16 @@ package org.sonatype.goodies.mavenpath;
 
 import javax.annotation.Nullable;
 
-//import com.google.common.hash.HashCode;
-//import com.google.common.hash.HashFunction;
-//import com.google.common.hash.Hashing;
-//import com.google.common.hash.HashingInputStream;
-//import com.google.common.io.ByteStreams;
-
 import static java.util.Objects.requireNonNull;
+import static org.sonatype.goodies.mavenpath.ChecksumType.Constants.ALGORITHM_MD5;
+import static org.sonatype.goodies.mavenpath.ChecksumType.Constants.ALGORITHM_SHA_1;
+import static org.sonatype.goodies.mavenpath.ChecksumType.Constants.ALGORITHM_SHA_256;
+import static org.sonatype.goodies.mavenpath.ChecksumType.Constants.ALGORITHM_SHA_512;
+import static org.sonatype.goodies.mavenpath.ChecksumType.Constants.EXTENSION_MD5;
+import static org.sonatype.goodies.mavenpath.ChecksumType.Constants.EXTENSION_SHA_1;
+import static org.sonatype.goodies.mavenpath.ChecksumType.Constants.EXTENSION_SHA_256;
+import static org.sonatype.goodies.mavenpath.ChecksumType.Constants.EXTENSION_SHA_512;
+import static org.sonatype.goodies.mavenpath.ChecksumType.Constants.TEXT_PLAIN;
 
 // see: https://github.com/sonatype/nexus2-internal/blob/master/private/plugins/clm/nexus-staging-plugin/src/main/java/com/sonatype/nexus/staging/internal/rules/ChecksumStagingRuleEvaluator.java
 
@@ -31,10 +34,10 @@ import static java.util.Objects.requireNonNull;
  */
 public enum ChecksumType
 {
-  SHA_1(Constants.EXTENSION_SHA_1, Constants.ALGORITHM_SHA_1, Constants.TEXT_PLAIN),
-  SHA_256(Constants.EXTENSION_SHA_256, Constants.ALGORITHM_SHA_256, Constants.TEXT_PLAIN),
-  SHA_512(Constants.EXTENSION_SHA_512, Constants.ALGORITHM_SHA_512, Constants.TEXT_PLAIN),
-  MD5(Constants.EXTENSION_MD5, Constants.ALGORITHM_MD5, Constants.TEXT_PLAIN);
+  SHA_1(EXTENSION_SHA_1, ALGORITHM_SHA_1, TEXT_PLAIN),
+  SHA_256(EXTENSION_SHA_256, ALGORITHM_SHA_256, TEXT_PLAIN),
+  SHA_512(EXTENSION_SHA_512, ALGORITHM_SHA_512, TEXT_PLAIN),
+  MD5(EXTENSION_MD5, ALGORITHM_MD5, TEXT_PLAIN);
 
   /**
    * File-extension suffix.

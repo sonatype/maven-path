@@ -15,6 +15,9 @@ package org.sonatype.goodies.mavenpath;
 import javax.annotation.Nullable;
 
 import static java.util.Objects.requireNonNull;
+import static org.sonatype.goodies.mavenpath.SignatureType.Constants.ALGORITHM_PGP;
+import static org.sonatype.goodies.mavenpath.SignatureType.Constants.APPLICATION_PGP_SIGNATURE;
+import static org.sonatype.goodies.mavenpath.SignatureType.Constants.EXTENSION_ASC;
 
 /**
  * Supported signature types.
@@ -23,7 +26,7 @@ import static java.util.Objects.requireNonNull;
  */
 public enum SignatureType
 {
-  PGP(Constants.EXTENSION_ASC, Constants.ALGORITHM_PGP, Constants.APPLICATION_PGP_SIGNATURE);
+  PGP(EXTENSION_ASC, ALGORITHM_PGP, APPLICATION_PGP_SIGNATURE);
 
   /**
    * File-extension suffix.
