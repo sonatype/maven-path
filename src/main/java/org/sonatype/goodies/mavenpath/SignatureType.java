@@ -23,7 +23,7 @@ import static java.util.Objects.requireNonNull;
  */
 public enum SignatureType
 {
-  PGP("asc", "PGP", "application/pgp-signature");
+  PGP(Constants.EXTENSION_ASC, Constants.ALGORITHM_PGP, Constants.APPLICATION_PGP_SIGNATURE);
 
   /**
    * File-extension suffix.
@@ -78,5 +78,14 @@ public enum SignatureType
       }
     }
     return null;
+  }
+
+  public static class Constants
+  {
+    public static final String APPLICATION_PGP_SIGNATURE = "application/pgp-signature";
+
+    public static final String ALGORITHM_PGP = "PGP";
+
+    public static final String EXTENSION_ASC = "asc";
   }
 }

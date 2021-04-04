@@ -31,10 +31,10 @@ import static java.util.Objects.requireNonNull;
  */
 public enum ChecksumType
 {
-  SHA_1("sha1", "SHA-1", "text/plain"),
-  SHA_256("sha256", "SHA-256", "text/plain"),
-  SHA_512("sha512", "SHA-512", "text/plain"),
-  MD5("md5", "MD5", "text/plain");
+  SHA_1(Constants.EXTENSION_SHA_1, Constants.ALGORITHM_SHA_1, Constants.TEXT_PLAIN),
+  SHA_256(Constants.EXTENSION_SHA_256, Constants.ALGORITHM_SHA_256, Constants.TEXT_PLAIN),
+  SHA_512(Constants.EXTENSION_SHA_512, Constants.ALGORITHM_SHA_512, Constants.TEXT_PLAIN),
+  MD5(Constants.EXTENSION_MD5, Constants.ALGORITHM_MD5, Constants.TEXT_PLAIN);
 
   /**
    * File-extension suffix.
@@ -89,5 +89,26 @@ public enum ChecksumType
       }
     }
     return null;
+  }
+
+  public static class Constants
+  {
+    public static final String TEXT_PLAIN = "text/plain";
+
+    public static final String EXTENSION_SHA_1 = "sha1";
+
+    public static final String EXTENSION_SHA_256 = "sha256";
+
+    public static final String EXTENSION_SHA_512 = "sha512";
+
+    public static final String EXTENSION_MD5 = "md5";
+
+    public static final String ALGORITHM_SHA_1 = "SHA-1";
+
+    public static final String ALGORITHM_SHA_256 = "SHA-256";
+
+    public static final String ALGORITHM_SHA_512 = "SHA-512";
+
+    public static final String ALGORITHM_MD5 = "MD5";
   }
 }
