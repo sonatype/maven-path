@@ -96,6 +96,7 @@ public class ArtifactPath
   //
 
   public static boolean isSubordinate(final String fileName) {
+    requireNonNull(fileName);
     for (ChecksumType checksum : ChecksumType.values()) {
       if (checksum.pathMatches(fileName)) {
         return true;
