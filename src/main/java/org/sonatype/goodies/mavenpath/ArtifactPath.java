@@ -110,6 +110,7 @@ public class ArtifactPath
   }
 
   public static boolean isSnapshotVersion(final ArtifactPath path) {
+    requireNonNull(path);
     if (path instanceof SnapshotArtifactPath) {
       return true;
     }
