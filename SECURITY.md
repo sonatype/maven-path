@@ -54,7 +54,7 @@ projects will be notified.
 
 ## Our public key
 
-```console
+```
 -----BEGIN PUBLIC KEY BLOCK-----
 mQENBFF+a9ABCADQWSAAU7w9i71Zn3TQ6k7lT9x57cRdtX7V709oeN/c/1it+gCw
 onmmCyf4ypor6XcPSOasp/x0s3hVuf6YfMbI0tSwJUWWihrmoPGIXtmiSOotQE0Q
