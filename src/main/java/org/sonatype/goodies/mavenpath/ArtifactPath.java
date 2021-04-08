@@ -77,17 +77,7 @@ public class ArtifactPath
   }
 
   public boolean isSubordinate() {
-    for (ChecksumType checksum : ChecksumType.values()) {
-      if (checksum.pathMatches(fileName)) {
-        return true;
-      }
-    }
-    for (SignatureType signature : SignatureType.values()) {
-      if (signature.pathMatches(fileName)) {
-        return true;
-      }
-    }
-    return false;
+    return isSubordinate(fileName);
   }
 
   @Override
@@ -105,7 +95,23 @@ public class ArtifactPath
   // Helpers
   //
 
+  public static boolean isSubordinate(final String fileName) {
+    requireNonNull(fileName);
+    for (ChecksumType checksum : ChecksumType.values()) {
+      if (checksum.pathMatches(fileName)) {
+        return true;
+      }
+    }
+    for (SignatureType signature : SignatureType.values()) {
+      if (signature.pathMatches(fileName)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public static boolean isSnapshotVersion(final ArtifactPath path) {
+    requireNonNull(path);
     if (path instanceof SnapshotArtifactPath) {
       return true;
     }

@@ -74,4 +74,19 @@ public class MavenPath
         ", fileName='" + fileName + '\'' +
         '}';
   }
+
+  //
+  // Helpers
+  //
+
+  public static boolean isSubordinate(final MavenPath path) {
+    boolean subordinate = false;
+    if (path instanceof ArtifactPath) {
+      subordinate = ((ArtifactPath)path).isSubordinate();
+    }
+    else if (path instanceof MavenMetadataPath) {
+      subordinate = ((MavenMetadataPath)path).getSubordinateType() != null;
+    }
+    return subordinate;
+  }
 }
