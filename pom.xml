@@ -111,19 +111,6 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.0.1</version>
-          <configuration>
-            <source>${maven.compiler.source}</source>
-            <additionalOptions>
-              <!-- Turn off strict javadoc checks in Java-8 -->
-              <option>-Xdoclint:none</option>
-            </additionalOptions>
-          </configuration>
-        </plugin>
-
-        <plugin>
           <groupId>com.mycila</groupId>
           <artifactId>license-maven-plugin</artifactId>
           <configuration>
