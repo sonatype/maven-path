@@ -8,7 +8,7 @@ mavenSnapshotPipeline(
   useEventSpy: false, // turn off artifactsPublisher and some other things that couple the withMaven stuff with the maven version
   testResults: [ '**/target/*-reports/*.xml' ],
   iqPolicyEvaluation: { stage ->
-    nexusPolicyEvaluation iqStage: stage, iqApplication: 'goodies',
+    nexusPolicyEvaluation iqStage: stage, iqApplication: 'maven-path',
       iqScanPatterns: [[scanPattern: 'scan_nothing']]
   }
 )
